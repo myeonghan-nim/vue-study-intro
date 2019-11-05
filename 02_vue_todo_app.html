@@ -21,7 +21,7 @@
 
 <body style="margin: 0;">
 
-  <div id="app" v-bind:style="{backgroundImage: 'url(' + bgImg + ')', height: '100vh', backgroundPosition: 'center', backgroundSize: 'cover'}">
+  <div id="app" :style="{backgroundImage: 'url(' + bgImg + ')', height: '100vh', backgroundPosition: 'center', backgroundSize: 'cover'}">
 
     <select v-model="status">
       <option value="all">All</option>
@@ -29,11 +29,13 @@
       <option value="completed">Completed</option>
     </select>
 
-    <input type="text" v-model="newTodo" v-on:keyup.enter="addTodo">
-    <button v-on:click="addTodo">Add</button>
-    <button v-on:click="deleteTodo">Delete</button>
+    <!-- v-on == @ -->
+    <input type="text" v-model="newTodo" @:keyup.enter="addTodo">
+    <button @:click="addTodo">Add</button>
+    <button @:click="deleteTodo">Delete</button>
 
-    <li v-for="todo in computedTodosByStatus" v-bind:class="{completed: todo.completed}" v-bind:key="todo.id">
+    <!-- v-bind == : -->
+    <li v-for="todo in computedTodosByStatus" :class="{completed: todo.completed}" :key="todo.id">
       <input type="checkbox" v-model="todo.completed">
       {{todo.title}}
     </li>
@@ -41,6 +43,18 @@
     <!-- <p>{{reverseNewTodo}}</p> -->
     <!-- <p>{{dateMethod()}}</p> -->
     <!-- <p>{{dateComputed}}</p> -->
+
+    <!-- v-text -->
+    <span>{{status}}</span>
+    <span v-text="status"></span>
+
+    <!-- HTML tag with Vue -->
+    <span v-html="tag"></span>
+
+    <!-- v-if -->
+    <span v-if="true">Hi</span>
+    <span v-if="false">Hi</span>  <!-- not rendering -->
+    <span v-show="false">Hi</span>  <!-- display none -->
 
   </div>
 
@@ -67,6 +81,7 @@
         newTodo: '',
         status: 'all',
         todos: [],
+        tag: '<h1>HiHiHi</h1>'
       },
 
       methods: {
@@ -156,7 +171,7 @@
       mounted: function() {
         this.todos = todoStorage.fetch()
         
-        const IMG_URL = 'https://source.unsplash.com/random/1920x1080/?nature'
+        const IMG_URL = 'https://source.unsplash.com/random/1920x1080/?cat'
 
         axios.get(IMG_URL)
           .then((response) => {
