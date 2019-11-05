@@ -19,9 +19,9 @@
 
 </head>
 
-<body>
+<body style="margin: 0;">
 
-  <div id="app">
+  <div id="app" v-bind:style="{backgroundImage: 'url(' + bgImg + ')', height: '100vh', backgroundPosition: 'center', backgroundSize: 'cover'}">
 
     <select v-model="status">
       <option value="all">All</option>
@@ -45,31 +45,28 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <script>
+    const STORAGE_KEY = 'vue-todo'
+    const todoStorage = {
+      save: function(todos) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
+      },
+
+      fetch: function() {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
+      },
+    }
+
     const app = new Vue({
       el: '#app',
 
       data: {
+        bgImg: '',
         newTodo: '',
         status: 'all',
-        todos: [
-          {
-            id: 1,
-            title: 'sleeping',
-            completed: false
-          },
-          {
-            id: 2,
-            title: 'extra-sleeping',
-            completed: false
-          },
-          {
-            id: 3,
-            title: 'ultra-hyper-sleeping',
-            completed: true
-          },
-        ],
+        todos: [],
       },
 
       methods: {
@@ -144,6 +141,28 @@
           }
           return statusTodos
         },
+      },
+
+      // when variable is changed, handle inner logic
+      watch: {
+        todos: {
+          handler: function(todos) {
+            todoStorage.save(todos)
+          },
+          deep: true
+        }
+      },
+
+      mounted: function() {
+        this.todos = todoStorage.fetch()
+        
+        const IMG_URL = 'https://source.unsplash.com/random/1920x1080/?nature'
+
+        axios.get(IMG_URL)
+          .then((response) => {
+            this.bgImg = response.request.responseURL
+          })
+          .catch((error) => {})
       }
     })
   </script>
