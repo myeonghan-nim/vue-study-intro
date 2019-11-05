@@ -1,12 +1,19 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
   <title>Document</title>
+
 </head>
+
 <body>
+
   <input type="text" id="js-input">
   <p id="js-p"></p>
 
@@ -17,6 +24,7 @@
   </div>
   
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  
   <script>
     const jsInput = document.querySelector('#js-input')
 
@@ -26,13 +34,16 @@
       jsP.innerText = jsInput.value
     })
 
-    const app = new Vue ({
+    const app = new Vue({
       el: '#app',
+      
       data: {
         message: 'Hello, Vue!!!',
         msg: ''
       }
     })
   </script>
+
 </body>
+
 </html>

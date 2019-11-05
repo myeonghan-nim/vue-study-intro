@@ -1,12 +1,19 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
   <title>Document</title>
+
 </head>
+
 <body>
+
   <div id="app">
     <div>
       <button v-on:click="getDogImage">bark!</button>
@@ -22,14 +29,16 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <script>
-    const app = new Vue ({
+    const app = new Vue({
       el: '#app',
+
       data: {
         dogImage: '',
         catImage: ''
       },
+
       methods: {
-        getDogImage: function () {
+        getDogImage: function() {
           const DOG_URL = 'https://dog.ceo/api/breeds/image/random'
 
           axios.get(DOG_URL)
@@ -38,7 +47,8 @@
             })
             .catch((error) => {})
         },
-        getCatImage: function () {
+        
+        getCatImage: function() {
           const CAT_URL = 'https://api.thecatapi.com/v1/images/search'
 
           axios.get(CAT_URL)
@@ -50,5 +60,7 @@
       }
     })
   </script>
+
 </body>
+
 </html>

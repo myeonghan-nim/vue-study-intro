@@ -1,29 +1,40 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
   <title>Document</title>
+
 </head>
+
 <body>
+
   <div id="app">
     {{message}} - {{count}}
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  
   <script>
-    const app = new Vue ({
+    const app = new Vue({
       el: '#app',  // mounted element
+
       data: {  // app.$data
         message: 'hello, Vue',  // variable: value
         count: 0,
       },
+
       methods: {
-        plus: function () {  // keyword function == Vue instance
+        plus: function() {  // keyword function == Vue instance
           this.count++
         },
-        minus () {
+        
+        minus() {
           this.count--
         }
         /*
@@ -34,5 +45,7 @@
       }
     })
   </script>
+
 </body>
+
 </html>
