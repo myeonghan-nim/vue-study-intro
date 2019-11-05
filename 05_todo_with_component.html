@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Document</title>
+
+</head>
+
+<body>
+
+  <div id="app">
+    
+    <h1>my Todo app</h1>
+
+    <todo-list category="Career"></todo-list>
+    <todo-list category="SSAFY"></todo-list>
+    <todo-list category="Shopping"></todo-list>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <script>
+    Vue.component('todo-list', {
+      template: `
+        <div class="todo-list">
+
+          <h1>{{category}}</h1>
+
+          <input type="text" v-model="newTodo" v-on:keyup.enter="addTodo">
+          <button v-on:click="addTodo">+</button>
+
+          <li v-for="todo in todos" v-bind:key="todo.id">
+            <span>{{todo.content}}</span>
+            <button v-on:click="removeTodo(todo.id)">x</button>
+          </li>
+
+        </div>
+      `,
+
+      props: ['category'],
+
+      data: function() {
+        return {
+          todos: [],
+          newTodo: ''
+        }
+      },
+
+      methods: {
+        addTodo: function(e) {
+          if (this.newTodo.length != 0) {
+            this.todos.push({
+              id: Date.now(),
+              content: this.newTodo,
+              completed: false,
+            })
+            this.newTodo = ''
+          }
+        },
+
+        removeTodo: function(todoID) {
+          this.todos = this.todos.filter(todo => {
+            return todo.id !== todoID
+          })
+        }
+      },
+    })
+  </script>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+    })
+  </script>
+
+</body>
+
+</html>
