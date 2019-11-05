@@ -1,67 +1,143 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
   <title>Document</title>
+
   <style>
     .completed {
       text-decoration: line-through;
       opacity: 0.6;
     }
   </style>
+
 </head>
+
 <body>
+
   <div id="app">
-    <input type="text" v-model="newTodo" v-on:keyup.enter="addTodo">  <!-- binding -->
-    <button v-on:click="addTodo">add!!!</button>
-    <button v-on:click="deleteTodo">delete!!!</button>
-    <li v-for="todo in todos" v-bind:class="{completed: todo.completed}">
+
+    <select v-model="status">
+      <option value="all">All</option>
+      <option value="active">Uncompleted</option>
+      <option value="completed">Completed</option>
+    </select>
+
+    <input type="text" v-model="newTodo" v-on:keyup.enter="addTodo">
+    <button v-on:click="addTodo">Add</button>
+    <button v-on:click="deleteTodo">Delete</button>
+
+    <li v-for="todo in computedTodosByStatus" v-bind:class="{completed: todo.completed}" v-bind:key="todo.id">
       <input type="checkbox" v-model="todo.completed">
       {{todo.title}}
     </li>
+    
+    <!-- <p>{{reverseNewTodo}}</p> -->
+
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
   <script>
-    const app = new Vue ({
+    const app = new Vue({
       el: '#app',
+
       data: {
         newTodo: '',
+        status: 'all',
         todos: [
           {
+            id: 1,
             title: 'sleeping',
             completed: false
           },
           {
+            id: 2,
             title: 'extra-sleeping',
             completed: false
           },
           {
+            id: 3,
             title: 'ultra-hyper-sleeping',
             completed: true
           },
         ],
       },
+
       methods: {
-        check (todo) {
+        check(todo) {
           todo.completed = !todo.completed
         },
-        addTodo () {
+
+        addTodo() {
           if (this.newTodo) {
             this.todos.push({
+              id: this.todos.length + 1,
               title: this.newTodo,
               completed: false
             })
             this.newTodo = ''
           }
         },
-        deleteTodo () {
+
+        deleteTodo() {
           this.todos = this.todos.filter(todo => todo.completed === false)
+        },
+        /*
+        todosByStatus: function() {
+          let statusTodos = []
+          if (this.status === 'completed') {
+            // return completed todos
+            statusTodos = this.todos.filter((todo) => {
+              return todo.completed === true
+            })
+          } else if (this.status === 'active') {
+            // return uncompleted todos
+            statusTodos = this.todos.filter((todo) => {
+              return todo.completed === false
+            })
+          } else {
+            statusTodos = this.todos
+          }
+          return statusTodos
+        }
+        */
+      },
+      
+      // when simple calculation is need
+      computed: {
+        /*
+        reverseNewTodo: function() {
+          return this.newTodo.split('').reverse().join('')
+        }
+        */
+        computedTodosByStatus: function() {
+          let statusTodos = []
+          if (this.status === 'completed') {
+            // return completed todos
+            statusTodos = this.todos.filter((todo) => {
+              return todo.completed === true
+            })
+          } else if (this.status === 'active') {
+            // return uncompleted todos
+            statusTodos = this.todos.filter((todo) => {
+              return todo.completed === false
+            })
+          } else {
+            statusTodos = this.todos
+          }
+          return statusTodos
         }
       }
     })
   </script>
+
 </body>
+
 </html>
