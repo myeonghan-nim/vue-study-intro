@@ -39,6 +39,8 @@
     </li>
     
     <!-- <p>{{reverseNewTodo}}</p> -->
+    <!-- <p>{{dateMethod()}}</p> -->
+    <!-- <p>{{dateComputed}}</p> -->
 
   </div>
 
@@ -107,15 +109,23 @@
           }
           return statusTodos
         }
+        dateMethod: function() {
+          return new Date()
+        }
         */
       },
       
       // when simple calculation is need
       computed: {
+        // if data cashing is need, use computed data
         /*
+        dateComputed: function() {
+          return new Date()
+        },
+
         reverseNewTodo: function() {
           return this.newTodo.split('').reverse().join('')
-        }
+        },
         */
         computedTodosByStatus: function() {
           let statusTodos = []
@@ -133,7 +143,7 @@
             statusTodos = this.todos
           }
           return statusTodos
-        }
+        },
       }
     })
   </script>
