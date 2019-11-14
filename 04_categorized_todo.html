@@ -24,7 +24,9 @@
   <div id="app">
 
     <div class="todo-list">
+
       <h3>Career</h3>
+
       <input type="text" v-model="newTodo1" v-on:keyup.enter="addTodo1">
       <button v-on:click="addTodo1">+</button>
   
@@ -32,10 +34,13 @@
         <span>{{ todo.content }}</span>
         <button v-on:click="removeTodo(todo.id)">x</button>
       </li>
+
     </div>
 
     <div class="todo-list">
+
       <h3>SSAFY</h3>
+
       <input type="text" v-model="newTodo2" v-on:keyup.enter="addTodo2">
       <button v-on:click="addTodo2">+</button>
   
@@ -43,10 +48,13 @@
         <span>{{ todo.content }}</span>
         <button v-on:click="removeTodo(todo.id)">x</button>
       </li>
+
     </div>
 
     <div class="todo-list">
+
       <h3>Shopping</h3>
+
       <input type="text" v-model="newTodo3" v-on:keyup.enter="addTodo3">
       <button v-on:click="addTodo3">+</button>
   
@@ -54,6 +62,7 @@
         <span>{{ todo.content }}</span>
         <button v-on:click="removeTodo(todo.id)">x</button>
       </li>
+      
     </div>
 
   </div>

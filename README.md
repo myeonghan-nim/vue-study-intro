@@ -1,3 +1,16 @@
-# Welcome to the Vue!!!
+# Welcome to the Vue!
 
-- Vue views AWESOME vue 😎
+```html
+<div id="app">
+  {{message}}
+</div>
+
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello, Vue!'
+    }
+  })
+</script>
+```

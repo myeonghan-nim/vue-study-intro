@@ -41,5 +41,5 @@ Vue.component('todo-list', {
         return todo.id !== todoID
       })
     }
-  },
+  }
 })

@@ -29,21 +29,17 @@
       <option value="completed">Completed</option>
     </select>
 
-    <!-- v-on == @ -->
+    <!-- v-on(@) -->
     <input type="text" v-model="newTodo" @:keyup.enter="addTodo">
     <button @:click="addTodo">Add</button>
     <button @:click="deleteTodo">Delete</button>
 
-    <!-- v-bind == : -->
+    <!-- v-bind(:) -->
     <li v-for="todo in computedTodosByStatus" :class="{completed: todo.completed}" :key="todo.id">
       <input type="checkbox" v-model="todo.completed">
       {{todo.title}}
     </li>
     
-    <!-- <p>{{reverseNewTodo}}</p> -->
-    <!-- <p>{{dateMethod()}}</p> -->
-    <!-- <p>{{dateComputed}}</p> -->
-
     <!-- v-text -->
     <span>{{status}}</span>
     <span v-text="status"></span>
@@ -67,7 +63,6 @@
       save: function(todos) {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
       },
-
       fetch: function() {
         return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
       },
@@ -106,6 +101,7 @@
         /*
         todosByStatus: function() {
           let statusTodos = []
+
           if (this.status === 'completed') {
             // return completed todos
             statusTodos = this.todos.filter((todo) => {
@@ -127,9 +123,9 @@
         */
       },
       
-      // when simple calculation is need
+      // computed(simple calculation)
       computed: {
-        // if data cashing is need, use computed data
+        // if data cashing is needed, use computed
         /*
         dateComputed: function() {
           return new Date()
@@ -141,6 +137,7 @@
         */
         computedTodosByStatus: function() {
           let statusTodos = []
+
           if (this.status === 'completed') {
             // return completed todos
             statusTodos = this.todos.filter((todo) => {
@@ -158,7 +155,7 @@
         },
       },
 
-      // when variable is changed, handle inner logic
+      // watch(when variable is changed handle inner logic)
       watch: {
         todos: {
           handler: function(todos) {

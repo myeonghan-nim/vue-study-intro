@@ -1,11 +1,8 @@
 Vue.component('todo-card', {
   template: `
     <div>
-
       <h1>{{title}}</h1>
-
       <h2>{{content}}</h2>
-
     </div>
   `,
 
@@ -31,5 +28,5 @@ Vue.component('todo-card', {
       }
     },
     content: String
-  },
+  }
 })
