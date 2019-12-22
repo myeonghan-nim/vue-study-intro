@@ -1,4 +1,6 @@
-# Welcome to the Vue!
+# README
+
+## Introduction of Vue
 
 ```html
 <div id="app">
