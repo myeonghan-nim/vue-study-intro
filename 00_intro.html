@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="custom-input" />
+    <p id="custom-p"></p>
+    <div id="app">
+      {{message}}
+      <input type="text" id="vue-input" v-model="msg" />
+      <p id="vue-p">{{msg}}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      const customInput = document.querySelector("#custom-input");
+      customInput.addEventListener("keyup", (e) => {
+        const customP = document.querySelector("#custom-p");
+        customP.innerText = customInput.value;
+      });
+
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello, Vue!",
+          msg: "",
+        },
+      });
+    </script>
+  </body>
+</html>

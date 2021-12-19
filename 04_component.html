@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .todo-list {
+        display: inline-block;
+        width: 33%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="todo-list">
+        <h3>Career</h3>
+        <input type="text" v-model="newCareer" v-on:keyup.enter="addCareer" />
+        <button v-on:click="addCareer">+</button>
+        <li v-for="career in careers" v-bind:key="career.id">
+          <span>{{ career.content }}</span>
+          <button v-on:click="remove('careers', career.id)">x</button>
+        </li>
+      </div>
+      <div class="todo-list">
+        <h3>Shopping</h3>
+        <input
+          type="text"
+          v-model="newShopping"
+          v-on:keyup.enter="addShopping"
+        />
+        <button v-on:click="addShopping">+</button>
+        <li v-for="shopping in shoppings" v-bind:key="shopping.id">
+          <span>{{ shopping.content }}</span>
+          <button v-on:click="remove('shoppings', shopping.id)">x</button>
+        </li>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          careers: [],
+          newCareer: "",
+          shoppings: [],
+          newShopping: "",
+        },
+        methods: {
+          addCareer: function (e) {
+            if (this.newCareer.length != 0) {
+              this.careers.push({
+                id: Date.now(),
+                content: this.newCareer,
+                completed: false,
+              });
+              this.newCareer = "";
+            }
+          },
+          addShopping: function (e) {
+            if (this.newShopping.length != 0) {
+              this.shoppings.push({
+                id: Date.now(),
+                content: this.newShopping,
+                completed: false,
+              });
+              this.newShopping = "";
+            }
+          },
+          remove: function (target, id) {
+            if (target === "careers") {
+              this.careers = this.careers.filter((career) => {
+                return career.id !== id;
+              });
+            } else {
+              this.shoppings = this.shoppings.filter((shopping) => {
+                return shopping.id !== id;
+              });
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
