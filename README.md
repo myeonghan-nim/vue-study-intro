@@ -1,18 +1,15 @@
-# README
+# Study: Vue
 
-## Introduction of Vue
+## Vue
 
 ```html
-<div id="app">
-  {{message}}
-</div>
-
+<div id="app">{{message}}</div>
 <script>
   const app = new Vue({
-    el: '#app',
+    el: "#app",
     data: {
-      message: 'Hello, Vue!'
-    }
-  })
+      message: "Hello, Vue!",
+    },
+  });
 </script>
 ```
