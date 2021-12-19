@@ -5,17 +5,12 @@ Vue.component('todo-card', {
       <h2>{{content}}</h2>
     </div>
   `,
-
   data: function() {
     return {
-
     }
   },
-
   methods: {
-
   },
-
   props: {
     title: {
       type: String,
